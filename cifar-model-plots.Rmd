@@ -1,0 +1,36 @@
+---
+title: "stat430-plot"
+author: "Alex Lim"
+date: "12/15/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+accuracies50 = c(64, 72.5, 70.1, 73.05, 73.14, 73.77)
+barplot(accuracies50-60, main="Validation Accuracies (50 epoch models)", names.arg=c("SGD", "ADAM", "SGD1lr", "SGD05lr", "SGD05lr", "ADAM05lr"), col = c("gray", "gray", "red", "red", "purple", "blue"),axes = FALSE, ylim = c(0,15), xlab = "Optimization method", ylab = "validation accuracy (%)")
+legend(x = "topleft",      
+       legend = c("No SAM or MM", "SAM", "MM", "SAM and MM"),  # Legend texts
+                  # Line types
+       col = c("gray", "red", "blue", "purple"),           # Line colors
+       lwd = 2, cex = 0.5)
+usr <- par("usr")
+par(usr=c(usr[1:2], 60,75))
+axis(2,at=seq(60,75,5))
+```
+```{r}
+accuracies70 = c(67.53, 72.95, 74.37, 72.20)
+barplot(accuracies70-60, main="Validation Accuracies (70 epoch models)", names.arg=c("RMSP001", "RMSP0005", "ADAM", "RSMP0005"), col = c("blue", "blue", "blue", "purple"),axes = FALSE, ylim = c(0,15), xlab = "Optimization method", ylab = "validation accuracy (%)")
+legend(x = "topleft",      
+       legend = c("MM", "SAM and MM"),  # Legend texts
+                  # Line types
+       col = c("blue", "purple"),           # Line colors
+       lwd = 2, cex = 0.7)
+usr <- par("usr")
+par(usr=c(usr[1:2], 60,75))
+axis(2,at=seq(60,75,5))
+```
+
